@@ -15,10 +15,12 @@ export const videogamesFetch = createAsyncThunk(
     async () => {
         const response = await axios.get(url);
         if(!response.ok) {
+            console.log(response, "Fetch results!")
             return Promise.reject("Unable to fetch, status: " + response.status);
+        }else {
+            // const data = await response.json();
+            return response.data
         }
-        const data = await response.json();
-        return data
         // .then(data => {
         //     // console.log(data, "API get call data")
         //     nextGameListUrl = data.next ? data.next : null;
@@ -34,19 +36,22 @@ const gameSlice = createSlice({
     name: "games",
     initialState,
     reducers: {},
-    extraReducers: {
-        [videogamesFetch.pending] : (state) => {
-            state.isLoading = true;
-        },
-        [videogamesFetch.fulfilled] : (state, action) => {
+    extraReducers: (builder) => {
+        builder.addCase(videogamesFetch.fulfilled, (state, action) => {
             state.isLoading = false;
             state.gamesArray = action.payload;
-        },
-        [videogamesFetch.rejected] : (state, action) => {
+        });
+        builder.addCase(videogamesFetch.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(videogamesFetch.rejected, (state, action) => {
             state.isLoading = false;
-            state.errMsg = action.error ? action.error.message : "Fetch failed";
-        }
+            state.errMsg = action.error ? action.error.message : "Fetch failed"
+        });
     }
 });
 
+export const selectAllGames = (state) => {
+    console.log(state.games.gamesArray)
+}
 export const gameReducer = gameSlice.reducer;

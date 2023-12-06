@@ -68,11 +68,6 @@ const GameCard = (props) => { //image, title, genre, rating, etc
             })
         }
     }
-
-    // const addFavorite = (obj) => {
-    //    return Favorites.push(obj)
-    // }
-
     const quantity = cartItems.length;
 
     return (
@@ -92,12 +87,14 @@ const GameCard = (props) => { //image, title, genre, rating, etc
                         <span className='fs-2'>{props.game.name}</span>
                         <span className='ms-2 text-muted'>{formatCurrency(price)}</span>
                     </CardTitle>
-                    <i class="fa fa-star fa-lg" > {props.game.rating}</i>
+                    <i className="fa fa-star fa-lg" > {props.game.rating}</i>
                     <CardText className='cardText'>Metacritic: {props.game.metacritic}</CardText>
-                    <CardText className='cardText'><i class="fa fa-calendar fa-lg" > Released: {props.game.released}</i></CardText>
+                    <CardText className='cardText'><i className="fa fa-calendar fa-lg" > Released: {props.game.released}</i></CardText>
                     <CardText className='platformsCard'> Platforms: {parentPlatforms.map((e) => {
                         return (
-                            <CardText className= 'platformsCard'>{e.platform.name}</CardText>
+                            <CardText className= 'platformsCard' key={e.platform.name}>
+                                {e.platform.name}
+                            </CardText>
                         )
                     })}</CardText> 
 

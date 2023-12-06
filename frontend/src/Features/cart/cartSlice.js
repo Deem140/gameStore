@@ -70,23 +70,6 @@ export const { increaseCartQuantity} = cartSlice.actions;
 
 
 export const selectAllCartItems = (state) => {
-    console.log(state)
+    // console.log(state)
     return state.cart.cartArray;
 }
-
-// export const increaseCartQuantity = (id) => {
-//     if(cartItems.find(item => item.id === id) == null){
-//         return [...cartItems, {id, quantity: 1}]
-//     } else {
-//         return cartItems.map(item => {
-//             if (item.id === id){
-//                 return { ...item, quantity: item.quantity + 1}
-//             } else {
-//                 return item
-//             }
-//         })
-//     }
-
-// export const selectCartItemById = (id) => (state) => {
-//     return state.cart.cartArray.find((item) => item.id)
-// }

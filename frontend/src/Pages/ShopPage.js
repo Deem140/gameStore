@@ -38,7 +38,7 @@ function ShopPage() {
                 <ShoppingCart />
                 <CartList />
 
-                <FetchPopularGames />
+                {/* <FetchPopularGames /> */}
                 <GameCardList />
         </div>
     )

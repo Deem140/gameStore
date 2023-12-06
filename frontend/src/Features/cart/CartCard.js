@@ -22,12 +22,15 @@ const CartCard = (props) => {
                 <CardImg src={props.game.image} alt={props.game.name} className='products'/>
                 <CardBody className = "cardBody">
                     <CardTitle className='cardText'>{props.game.name}</CardTitle>
-                    <i class="fa fa-star fa-lg" > {props.game.rating}</i>
+                    <i className="fa fa-star fa-lg" > {props.game.rating}</i>
                     <CardText className='cardText'>Metacritic: {props.game.metacritic}</CardText>
-                    <CardText className='cardText'><i class="fa fa-calendar fa-lg" > Released: {props.game.released}</i></CardText>
+                    <CardText className='cardText'><i className="fa fa-calendar fa-lg" > Released: {props.game.released}</i></CardText>
                     <CardText className='platformsCard'> Platforms: {platforms.map((e) => {
+                       
                         return (
-                            <CardText className= 'platformsCard'>{e}</CardText>
+                            <CardText className= 'platformsCard' key={e}>
+                                {e}
+                            </CardText>
                         )
                     })}</CardText> 
 

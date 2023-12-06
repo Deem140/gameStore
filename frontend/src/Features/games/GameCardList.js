@@ -6,7 +6,7 @@ import apiKey from '../../utils/apiKey';
 import GameCard from './GameCard';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectAllCartItems } from '../cart/cartSlice';
+import { selectAllGames } from './videoGameSlice';
 import "./gameCard.css"
 import "../../Pages/pages.css";
 let nextGameListUrl = null;
@@ -15,7 +15,11 @@ const url = `https://rawg.io/api/games?key=${apiKey}&dates=2022-01-01,2023-08-30
 
 const GameCardList = (props) => {
 
-    const cartItems = useSelector(selectAllCartItems);
+    // const gameList = useSelector(selectAllGames);
+    // console.log(gameList, "gameList!!")
+
+    const isLoading = useSelector((state) => state.isLoading);
+    const errMsg = useSelector((state) => state.errMsg);
     
     const [games, setGames] = useState([ ]);
 
@@ -35,7 +39,7 @@ const GameCardList = (props) => {
           <div className = "products">
                 {games.map((game) => {
                     return (
-                        <GameCard game={game} />
+                        <GameCard game={game} key={game.id}/>
                     )
                 })}
           </div>

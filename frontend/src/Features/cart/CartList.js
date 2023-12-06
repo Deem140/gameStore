@@ -10,10 +10,9 @@ const CartList = () => {
         <Row className="ms-auto">
             {
                 cartItems.map((game) => {
-                    console.log(game, "game to be mapped:")
                     return (
                         <Col md="5" className='m-4' key={game.id}>
-                            <CartCard game={game} />
+                            <CartCard game={game} key={game.id}/>
                         </Col> 
                         
                     
